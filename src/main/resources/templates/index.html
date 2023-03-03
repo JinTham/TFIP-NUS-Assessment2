@@ -11,7 +11,7 @@
 		-->
 
 		<h1>Shopping Cart</h1>
-		<form method="POST" action="/" data-th-object="${item}">
+		<form method="POST" action="/shippingaddress" data-th-object="${item}">
 			<table>
 				<tr>
 					<td>Item:</td>
@@ -33,26 +33,37 @@
 						<input type="number" name="quantity" size="4" placeholder="Quantity" data-th-field="*{quantity}">
 					</td>
 				</tr>
+				<tr data-th-if="${#fields.hasErrors('quantity')}">
+					<td>
+						<span data-th-errors="*{quantity}" data-th-errorclass="error"></span>
+					</td>
+				</tr>
 			</table>
 
-			<table border="1" style="margin-top: 2vh; margin-bottom: 2vh;">
-				<thead>
-					<tr>
-						<th>Item</th>
-						<th>Quantity</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Apple</td>
-						<td>3</td>
-					</tr>
-				</tbody>
-			</table>
+			<div data-th-if="${cart.cartList.size() != 0}">
+				<table border="1" style="margin-top: 2vh; margin-bottom: 2vh;">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Quantity</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-th-each="item : ${cart.cartList}">
+							<td><span data-th-text="${item.itemName}"></span></td>
+							<td><span data-th-text="${item.quantity}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div data-th-unless="${cart.cartList.size() != 0}">
+				<span><br>"Your cart is currently empty"<br><br></span>
+			</div>
+			
 
 			<div>
-				<button type="button">Add</button>
-				<button type="button">Next</button>
+				<button type="submit" formmethod="POST" formaction="/">Add</button>
+				<button type="submit">Next</button>
 			</div>
 		</form>
 		

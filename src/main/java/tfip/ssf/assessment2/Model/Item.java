@@ -1,16 +1,15 @@
 package tfip.ssf.assessment2.Model;
 
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 public class Item {
 
+    @NotNull(message = "Item is mandatory field")
     private String itemName;
 
-    @NotNull(message = "Mandatory field")
-    @NotEmpty(message = "Cannot leave it blank")
-    @Min(value = 1,message = "You must add at least 1 item")
+    @NotNull(message = "Cannot leave quantity field empty!")
+    @Min(value = 1,message = "You must add at least 1 item!")
     private Integer quantity;
     
     //Constructors
@@ -37,6 +36,11 @@ public class Item {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }    
+    } 
+    
+    //Methods
+    public void updateQuantity(Integer quantity) {
+        this.quantity += quantity;
+    }
     
 }
