@@ -26,7 +26,7 @@ public class Assessment2Application implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		String[] ITEMS= {"apple","orange","bread","cheese","instant_noodles","chicken","mineral_water"};
         List<String> items = new LinkedList<>(Arrays.asList(ITEMS));
-		Quotation quotation = quoteSvc.getQuotations(items);
+		//Quotation quotation = quoteSvc.getQuotations(items);
 	}
 
 }
