@@ -15,9 +15,7 @@
                 <td>
                     <input type="text" data-th-field="*{name}">
                 </td>
-            </tr>
-            <tr data-th-if="${#fields.hasErrors('name')}">
-                <td>
+                <td data-th-if="${#fields.hasErrors('name')}">
                     <span data-th-errors="*{name}" data-th-errorclass="error"></span>
                 </td>
             </tr>
@@ -26,15 +24,13 @@
                 <td>
                     <input type="text" data-th-field="*{address}">
                 </td>
-            </tr>
-            <tr data-th-if="${#fields.hasErrors('address')}">
-                <td>
+                <td data-th-if="${#fields.hasErrors('address')}">
                     <span data-th-errors="*{address}" data-th-errorclass="error"></span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button type="submit"  formmethod="POST" formaction="/">Back</button>
+                    <button type="submit"  formmethod="GET" formaction="/">Back</button>
                 </td>
                 <td>
                     <button type="submit">Checkout</button>
