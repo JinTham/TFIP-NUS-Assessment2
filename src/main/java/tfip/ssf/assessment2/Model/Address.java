@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 public class Address {
     
     @NotNull(message = "Mandatory field")
+    @NotEmpty(message="Please state your name")
     private String name;
 
     @NotNull(message = "Mandatory field")

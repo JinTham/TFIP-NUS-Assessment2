@@ -11,7 +11,7 @@
 		-->
 
 		<h1>Shopping Cart</h1>
-		<form method="POST" action="/shippingaddress" data-th-object="${item}">
+		<form method="GET" action="/shippingaddress" data-th-object="${item}">
 			<table>
 				<tr>
 					<td>Item:</td>
@@ -25,6 +25,11 @@
 							<option value="mineral_water">Mineral Water</option>
 							<option value="instant_noodles">Instant Noodles</option>
 						</select>
+					</td>
+				</tr>
+				<tr data-th-if="${#fields.hasErrors('itemName')}">
+					<td>
+						<span data-th-errors="*{itemName}" data-th-errorclass="error"></span>
 					</td>
 				</tr>
 				<tr>
@@ -63,7 +68,7 @@
 
 			<div>
 				<button type="submit" formmethod="POST" formaction="/">Add</button>
-				<button type="submit">Next</button>
+				<button type="submit" formmethod="GET" formaction="/shippingaddress">Next</button>
 			</div>
 		</form>
 		

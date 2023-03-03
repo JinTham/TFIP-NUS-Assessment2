@@ -43,4 +43,12 @@ public class Cart {
             this.cartList.add(item);
         }
     }
+
+    public List<String> getItemNames() {
+        List<String> itemList = new LinkedList<>();
+        for (Item item : this.cartList) {
+            itemList.add(item.getItemName());
+        }
+        return itemList;
+    }
 }
