@@ -40,7 +40,7 @@ public class PurchaseOrderController {
         }
         model.addAttribute("cart", cart);
         model.addAttribute("item", new Item());
-        return "index";
+        return "view1";
     }
 
     @PostMapping(path={"/", "/index.html"})
@@ -53,18 +53,18 @@ public class PurchaseOrderController {
         }
         if (result.hasErrors()){
             model.addAttribute("cart", cart);
-            return "index";
+            return "view1";
         }
         List<ObjectError> errors = cartSvc.validateItem(item);
 		if (!errors.isEmpty()) {
 			for (ObjectError err: errors)
 				result.addError(err);
             model.addAttribute("cart", cart);
-			return "index";
+			return "view1";
 		}
         cart.addItem(item);
         model.addAttribute("cart", cart);
-        return "index";
+        return "view1";
     }
 
     @GetMapping(path="/shippingaddress")
@@ -73,10 +73,10 @@ public class PurchaseOrderController {
         if (null == cart || cart.getCartList().size()==0) {
             model.addAttribute("cart", cart);
             model.addAttribute("item", new Item());
-            return "index";
+            return "view1";
         }
         model.addAttribute("address", new Address());
-        return "address";
+        return "view2";
     }
 
     @PostMapping(path="/invoice")
@@ -84,7 +84,7 @@ public class PurchaseOrderController {
         Cart cart = (Cart)session.getAttribute("cart");
         if (null == cart) {
             model.addAttribute("cart", cart);
-            return "index";
+            return "view1";
         }
         if (result.hasErrors()){
             return "address";
@@ -97,7 +97,7 @@ public class PurchaseOrderController {
         model.addAttribute("quotation", quotation);
         model.addAttribute("price", price);
         session.invalidate();
-        return "invoice";
+        return "view3";
     }
 
 }

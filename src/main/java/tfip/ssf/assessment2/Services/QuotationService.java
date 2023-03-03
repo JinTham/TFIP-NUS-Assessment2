@@ -31,7 +31,7 @@ public class QuotationService {
             .accept(MediaType.APPLICATION_JSON)
             .body(jsonArray.toString(),String.class);
         
-            RestTemplate template = new RestTemplate();
+        RestTemplate template = new RestTemplate();
         ResponseEntity<String> resp = template.exchange(req, String.class);
         String payload = resp.getBody();
         int statusCode = resp.getStatusCode().value();

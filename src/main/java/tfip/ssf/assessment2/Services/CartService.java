@@ -22,7 +22,7 @@ public class CartService {
         Set<String> itemNames = new HashSet<>(Arrays.asList(ITEM_NAMES));
 		if (!itemNames.contains(item.getItemName().toLowerCase())) {
 			error = new FieldError("item", "itemName"
-					, "We do not have %s item".formatted(item.getItemName()));
+					, "We do not stock %s".formatted(item.getItemName()));
 			errors.add(error);
 		}
 		return errors;

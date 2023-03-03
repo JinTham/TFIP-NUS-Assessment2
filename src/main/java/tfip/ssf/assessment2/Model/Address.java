@@ -2,11 +2,13 @@ package tfip.ssf.assessment2.Model;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class Address {
     
     @NotNull(message = "Mandatory field")
     @NotEmpty(message="Please state your name")
+    @Size(min = 2,message = "Please put a longer name")
     private String name;
 
     @NotNull(message = "Mandatory field")
