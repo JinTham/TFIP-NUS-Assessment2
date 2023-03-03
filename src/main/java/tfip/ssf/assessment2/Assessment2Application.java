@@ -9,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import tfip.ssf.assessment2.Model.Quotation;
 import tfip.ssf.assessment2.Services.QuotationService;
 
 @SpringBootApplication
@@ -26,7 +25,7 @@ public class Assessment2Application implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		String[] ITEMS= {"apple","orange","bread","cheese","instant_noodles","chicken","mineral_water"};
         List<String> items = new LinkedList<>(Arrays.asList(ITEMS));
-		//Quotation quotation = quoteSvc.getQuotations(items);
+		//quoteSvc.getQuotations(items);
 	}
 
 }

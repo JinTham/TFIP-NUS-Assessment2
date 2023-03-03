@@ -87,12 +87,14 @@ public class PurchaseOrderController {
             return "view1";
         }
         if (result.hasErrors()){
-            return "address";
+            return "view2";
         }
         Quotation quotation = quoteSvc.getQuotations(cart.getItemNames());
-        //Float price = quoteSvc.calculatePrice(quotation, cart.getCartList());
+        if (null == quotation) {
+            model.addAttribute("address", address);
+            return "view2";
+        }
         String price = String.format("%.02f",quoteSvc.calculatePrice(quotation, cart.getCartList()));
-        //price = String.format("%.02f", price);
         model.addAttribute("address", address);
         model.addAttribute("quotation", quotation);
         model.addAttribute("price", price);

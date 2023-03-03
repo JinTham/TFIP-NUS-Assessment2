@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
@@ -41,17 +42,24 @@ public class QuotationService {
         JsonReader reader = Json.createReader(new StringReader(payload));
         JsonObject json = reader.readObject();
 
+        //Return null if response object contains error
+        if (json.containsKey("error")) {
+            return null;
+        }
         //Parse JsonObject into Quotation class
         Quotation quotation = new Quotation();
-        quotation.setQuoteId(json.getString("quoteId"));
-        JsonArray quotations = json.getJsonArray("quotations");
-        for (int i=0;i<quotations.size();i++) {
-            JsonObject quote = quotations.getJsonObject(i);
-            String name = quote.getString("item");
-            Float price = (float) quote.getJsonNumber("unitPrice").doubleValue();
-            quotation.addQuotation(name, price);
+        try {
+            quotation.setQuoteId(json.getString("quoteId"));
+            JsonArray quotations = json.getJsonArray("quotations");
+            for (int i=0;i<quotations.size();i++) {
+                JsonObject quote = quotations.getJsonObject(i);
+                String name = quote.getString("item");
+                Float price = (float) quote.getJsonNumber("unitPrice").doubleValue();
+                quotation.addQuotation(name, price);
+            }
+        } catch (HttpClientErrorException ex) {
+            return null;
         }
-
         return quotation;
     }
 
