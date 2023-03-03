@@ -1,8 +1,8 @@
 package tfip.ssf.assessment2.Services;
 
 import java.io.StringReader;
-import java.math.BigDecimal;
 import java.util.List;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +12,9 @@ import org.springframework.web.client.RestTemplate;
 import com.google.gson.Gson;
 
 import jakarta.json.Json;
+import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
-import jakarta.json.JsonString;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonNumber;
 import tfip.ssf.assessment2.Model.Item;
 import tfip.ssf.assessment2.Model.Quotation;
 
